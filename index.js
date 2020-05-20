@@ -39,9 +39,9 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person(name, age) {
-  this.name = name,
-  this.age = age,
+function Person(personAttributes) {
+  this.name = personAttributes.name,
+  this.age = personAttributes.age,
   this.stomach = [];
 }
 
@@ -59,11 +59,20 @@ Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`;
 }
 
-const emilio = new Person("Emilio", 30);
-emilio.eat("Buffalo Wings");
+const emilio = new Person({
+  name: "Emilio",
+  age: 30
+});
+
+console.log(emilio);
+console.log(emilio.name);
+console.log(emilio.age);
+console.log(emilio.stomach);
+emilio.eat("pizza");
 console.log(emilio.stomach);
 emilio.poop();
 console.log(emilio.stomach);
+console.log(emilio.toString());
 
 /*
   TASK 2
@@ -102,9 +111,25 @@ Car.prototype.drive = function(distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(babyAttributes) {
+  Person.call(this, babyAttributes);
+  this.favoriteToy = babyAttributes.favoriteToy;
 }
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
+
+const julioAndre = new Baby({
+  name: "Julio Andre",
+  age: 3,
+  favoriteToy: "Woody"
+});
+
+console.log(julioAndre);
+console.log(julioAndre.play());
 
 /* 
   TASK 4
