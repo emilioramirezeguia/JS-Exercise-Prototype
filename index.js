@@ -39,9 +39,9 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person(personAttributes) {
-  this.name = personAttributes.name,
-  this.age = personAttributes.age,
+function Person(name, age) {
+  this.name = name,
+  this.age = age,
   this.stomach = [];
 }
 
@@ -59,10 +59,7 @@ Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`;
 }
 
-const emilio = new Person({
-  name: "Emilio",
-  age: 30
-});
+const emilio = new Person("Emilio", 30);
 
 console.log(emilio);
 console.log(emilio.name);
@@ -111,9 +108,9 @@ Car.prototype.drive = function(distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(babyAttributes) {
-  Person.call(this, babyAttributes);
-  this.favoriteToy = babyAttributes.favoriteToy;
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age, favoriteToy);
+  this.favoriteToy = favoriteToy;
 }
 
 Baby.prototype = Object.create(Person.prototype);
@@ -122,11 +119,7 @@ Baby.prototype.play = function(){
   return `Playing with ${this.favoriteToy}`;
 }
 
-const julioAndre = new Baby({
-  name: "Julio Andre",
-  age: 3,
-  favoriteToy: "Woody"
-});
+const julioAndre = new Baby("Julio Andre", 3, "Woody");
 
 console.log(julioAndre);
 console.log(julioAndre.play());
@@ -135,10 +128,10 @@ console.log(julioAndre.play());
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global Binding refers to the console Object.
+  2. Implicit Binding is whatever is left of the dot when we call an object's method.
+  3. New Binding is when we create an Object and refer to it when creating properties. 
+  4. Explicit Binding is when we use the call or apply method. Whatever object we pass in as an argument is what it's refering to.
 */
 
 
